@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  zkmaster:
+    image: jplock/zookeeper
+    ports:
+      - "2181:2181"
+    container_name: "zkmaster"
+  zkslave1:
+    image: jplock/zookeeper
+     ports:
+      - "2182:2181"
+    container_name: "zkslave1"
+    depends_on:
+      - zkmaster
+  zkslave2:
+    image: jplock/zookeeper
+     ports:
+      - "2183:2181"
+    container_name: "zkslave2"
+    depends_on:
+      - zkmaster
