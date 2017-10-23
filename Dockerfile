@@ -1,4 +1,3 @@
-
 FROM ubuntu:14.04
 MAINTAINER lixy
 
@@ -42,11 +41,11 @@ ENV HADOOP_HOME /usr/local/hadoop \
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/local/java\nexport H=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh \
     sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
   
-ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml \
-    hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml \
-    mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml \
-    yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml \
-    log4j.properties $HADOOP_HOME/etc/hadoop/log4j.properties
+ADD hadoop/conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml \
+    hadoop/conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml \
+    hadoop/conf/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml \
+    hadoop/conf/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml \
+    hadoop/conf/slave $HADOOP_HOME/etc/hadoop/slave
 
 # init hdfs
 RUN $HADOOP_HOME/bin/hdfs namenode -format
