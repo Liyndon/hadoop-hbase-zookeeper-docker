@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER lixy
+MAINTAINER lixy <lixyon@163.com>
 
 USER root
 
