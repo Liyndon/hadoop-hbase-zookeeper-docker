@@ -6,7 +6,7 @@ USER root
 # install dev tools
 # RUN apt-get update
 # curl tar sudo openssh-server openssh-client rsync
-RUN sudo yum install -y curl
+RUN yum install -y openssh-server
 
 # passwordless ssh
 RUN rm -rf /etc/ssh/ssh_host_dsa_key \
