@@ -72,7 +72,8 @@ RUN set -euxo pipefail && \
     apk del tar wget
 
 COPY conf/hbase-site.xml /hbase/conf/
-COPY profile.d/java.sh /etc/profile.d/
+COPY conf/hbase-env.sh /hbase/conf/
+COPY conf/regionservers /hbase/conf/
 
 # Stargate  8080  / 8085
 # Thrift    9090  / 9095
