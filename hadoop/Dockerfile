@@ -4,8 +4,9 @@ MAINTAINER lixy <lixyon@163.com>
 USER root
 
 # install dev tools
-RUN apt-get update \ 
-    apt-get install -y curl tar sudo openssh-server openssh-client rsync
+# RUN apt-get update \ 
+
+RUN apt-get install -y curl tar sudo openssh-server openssh-client rsync
 
 # passwordless ssh
 RUN rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
