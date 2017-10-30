@@ -10,7 +10,7 @@ USER root
 
 # 更新软件源
 RUN apt-get update
-RUN apt-get install-y openssh-server
+RUN apt-get install -y openssh-server
 
 # passwordless ssh
 RUN rm -rf /etc/ssh/ssh_host_dsa_key \
