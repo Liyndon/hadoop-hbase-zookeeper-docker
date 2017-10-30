@@ -4,7 +4,7 @@ MAINTAINER lixy <lixyon@aliyun.com>
 USER root
 
 RUN set -euxo pipefail && \
-    apk add --no-cache bash openjdk8-jre-base curl tar sudo openssh-server openssh-client rsync
+    apk add --no-cache bash curl tar sudo openssh-server openssh-client rsync
 
 # passwordless ssh
 RUN rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
