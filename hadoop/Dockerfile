@@ -1,12 +1,10 @@
-FROM ubuntu:14.04
-MAINTAINER lixy <lixyon@163.com>
+FROM alpine:latest
+MAINTAINER lixy <lixyon@aliyun.com>
 
 USER root
 
-# install dev tools
-# RUN apt-get update \ 
-
-RUN apt-get install -y curl tar sudo openssh-server openssh-client rsync
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk8-jre-base curl tar sudo openssh-server openssh-client rsync
 
 # passwordless ssh
 RUN rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
