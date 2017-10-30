@@ -1,4 +1,4 @@
-FROM centos:6.5
+FROM hub.c.163.com/public/centos:6.5
 MAINTAINER lixy <lixyon@163.com>
 
 USER root
