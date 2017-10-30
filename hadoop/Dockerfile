@@ -1,4 +1,4 @@
-FROM hub.c.163.com/public/centos:6.5
+FROM hub.c.163.com/netease_comb/debian:7.9
 MAINTAINER lixy <lixyon@163.com>
 
 USER root
@@ -6,7 +6,11 @@ USER root
 # install dev tools
 # RUN apt-get update
 # curl tar sudo openssh-server openssh-client rsync
-RUN yum install -y openssh-server
+# RUN yum install -y openssh-server
+
+# 更新软件源
+RUN apt-get update
+RUN apt-get install-y openssh-server
 
 # passwordless ssh
 RUN rm -rf /etc/ssh/ssh_host_dsa_key \
