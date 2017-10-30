@@ -1,14 +1,18 @@
-FROM alpine:latest
-MAINTAINER lixy <lixyon@aliyun.com>
+FROM ubuntu:14.04
+MAINTAINER lixy <lixyon@163.com>
 
 USER root
 
-RUN set -euxo pipefail && \
-    apk add --no-cache bash curl tar sudo openssh-server openssh-client rsync
+# install dev tools
+# RUN apt-get update \ 
+
+RUN apt-get update \ 
+    apt-get install -y curl tar sudo openssh-server openssh-client rsync
 
 # passwordless ssh
-# /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key
-RUN rm -rf /root/.ssh/id_rsa \
+RUN rm -rf /etc/ssh/ssh_host_dsa_key \
+    rm -rf /etc/ssh/ssh_host_rsa_key \
+    rm -rf /root/.ssh/id_rsa \
     ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key \
     ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa \
