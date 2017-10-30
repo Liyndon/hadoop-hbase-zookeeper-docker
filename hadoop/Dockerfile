@@ -10,10 +10,10 @@ RUN apt-get update
 RUN apt-get install -y tar openssh-server openssh-client rsync
 
 # passwordless ssh
-RUN rm -rf /etc/ssh/ssh_host_dsa_key \
-    rm -rf /etc/ssh/ssh_host_rsa_key \
-    rm -rf /root/.ssh/id_rsa \
-    ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key \
+# rm -rf /etc/ssh/ssh_host_dsa_key
+# rm -rf /etc/ssh/ssh_host_rsa_key
+# rm -rf /root/.ssh/id_rsa
+RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key \
     ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa \
     cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys 
