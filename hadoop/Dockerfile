@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM centos:6.5
 MAINTAINER lixy <lixyon@163.com>
 
 USER root
@@ -6,7 +6,7 @@ USER root
 # install dev tools
 # RUN apt-get update
 # curl tar sudo openssh-server openssh-client rsync
-RUN sudo apt-get install curl
+RUN sudo yum install -y curl
 
 # passwordless ssh
 RUN rm -rf /etc/ssh/ssh_host_dsa_key \
