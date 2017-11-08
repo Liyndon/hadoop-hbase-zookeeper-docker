@@ -1,4 +1,4 @@
-FROM docker pull hub.c.163.com/library/alpine:latest
+FROM hub.c.163.com/library/alpine:latest
 MAINTAINER lixy <lixyon@aliyun.com>
 
 ARG HBASE_VERSION=1.3.1
