@@ -8,9 +8,9 @@ WORKDIR /
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
 
- apt-get update && \
-  apt-get install -y openjdk-7-jdk wget tar && \
-  rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y openjdk-7-jdk wget tar
+RUN rm -rf /var/lib/apt/lists/*
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 ENV PATH $PATH:/hbase/bin
@@ -41,19 +41,19 @@ ENV PATH $PATH:/hbase/bin
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
     #                  (and is also the wrong version for the tag)
-    wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
+
+RUN wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
     wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
     mkdir "hbase-$HBASE_VERSION" && \
     tar zxf "hbase-$HBASE_VERSION-bin.tar.gz" -C "hbase-$HBASE_VERSION" --strip 1 && \
     test -d "hbase-$HBASE_VERSION" && \
     ln -sv "hbase-$HBASE_VERSION" hbase && \
     rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
-    { rm -rf hbase/{docs,src}; : ; } && \
-    apk del tar wget
+    { rm -rf hbase/{docs,src}; : ; }
 
-COPY conf/hbase-site.xml /hbase/conf/
-COPY conf/hbase-env.sh /hbase/conf/
-COPY conf/regionservers /hbase/conf/
+ADD conf/hbase-site.xml /hbase/conf/
+ADD conf/hbase-env.sh /hbase/conf/
+ADD conf/regionservers /hbase/conf/
 
 # Stargate  8080  / 8085
 # Thrift    9090  / 9095
