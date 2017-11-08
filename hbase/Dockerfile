@@ -1,4 +1,4 @@
-FROM FROM hub.c.163.com/public/ubuntu:14.04
+FROM hub.c.163.com/public/ubuntu:14.04
 MAINTAINER lixy <lixyon@aliyun.com>
 
 ARG HBASE_VERSION=1.3.1
