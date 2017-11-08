@@ -16,7 +16,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 ENV PATH $PATH:/hbase/bin
 
     # HBase 0.94
-    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+RUN    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.96 usually missing from mirrors, have to use apache archive
