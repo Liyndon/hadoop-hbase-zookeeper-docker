@@ -1,40 +1,20 @@
-FROM hub.c.163.com/library/alpine:latest
+FROM FROM hub.c.163.com/public/ubuntu:14.04
 MAINTAINER lixy <lixyon@aliyun.com>
 
 ARG HBASE_VERSION=1.3.1
-
-ENV PATH $PATH:/hbase/bin
 
 WORKDIR /
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
 
-# add a simple script that can auto-detect the appropriate JAVA_HOME value
-# based on whether the JDK or only the JRE is installed
-RUN { \
-		echo '#!/bin/sh'; \
-		echo 'set -e'; \
-		echo; \
-		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
-	} > /usr/local/bin/docker-java-home \
-	&& chmod +x /usr/local/bin/docker-java-home
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+ apt-get update && \
+  apt-get install -y openjdk-7-jdk wget tar && \
+  rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+ENV PATH $PATH:$JAVA_HOME/bin
+ENV PATH $PATH:/hbase/bin
 
-ENV JAVA_VERSION 8u111
-ENV JAVA_ALPINE_VERSION 8.111.14-r0
-
-RUN set -x \
-	&& apk add --no-cache \
-		openjdk8="$JAVA_ALPINE_VERSION" \
-	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
-
-RUN set -euxo pipefail && \
-    apk add --no-cache bash
-
-RUN set -euxo pipefail && \
-    apk add --no-cache wget tar && \
     # HBase 0.94
     if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
