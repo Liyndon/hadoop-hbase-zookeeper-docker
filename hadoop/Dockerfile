@@ -37,7 +37,7 @@ ENV HADOOP_HOME /usr/local/hadoop \
     HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop \
     HADOOP_LOG_DIR /usr/local/hadoop/logs
 
-RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64\nexport H=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh \
+RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 \n export H=/usr/local/hadoop \n export HADOOP_HOME=/usr/local/hadoop \n:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh \
     sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
   
 ADD conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml \
