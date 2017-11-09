@@ -37,14 +37,12 @@ ENV HADOOP_HOME /usr/local/hadoop \
     HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop \
     HADOOP_LOG_DIR /usr/local/hadoop/logs
 
-RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 \n export H=/usr/local/hadoop \n export HADOOP_HOME=/usr/local/hadoop \n:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh \
-    sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-  
 ADD conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml \
     conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml \
     conf/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml \
     conf/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml \
-    conf/slave $HADOOP_HOME/etc/hadoop/slave
+    conf/slave $HADOOP_HOME/etc/hadoop/slave \
+    conf/hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
 # init hdfs
 RUN $HADOOP_HOME/bin/hdfs namenode -format
