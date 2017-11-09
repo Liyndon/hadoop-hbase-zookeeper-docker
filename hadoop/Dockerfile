@@ -34,8 +34,7 @@ RUN ln -s /usr/local/hadoop-${HADOOP_VERSION} /usr/local/hadoop && \
     mkdir -p /root/hadoop/data
 
 ENV HADOOP_HOME /usr/local/hadoop \
-    HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop \
-    HADOOP_LOG_DIR /usr/local/hadoop/logs
+    HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop
 
 ADD conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml \
     conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml \
