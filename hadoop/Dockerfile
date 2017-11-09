@@ -20,7 +20,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # download native support
-RUN mkdir -p /tmp/native \
+RUN mkdir -p /tmp/native && \
     curl -Ls http://dl.bintray.com/sequenceiq/sequenceiq-bin/hadoop-native-64-2.7.0.tar \
     | tar -x -C /tmp/native
 
