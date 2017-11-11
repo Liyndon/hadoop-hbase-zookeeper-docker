@@ -35,7 +35,7 @@ RUN ln -s /usr/local/hadoop-${HADOOP_VERSION} /usr/local/hadoop && \
 
 ENV HADOOP_HOME /usr/local/hadoop
 
-#ADD conf/core-site.xml /usr/local/hadoop/etc/hadoop/core-site.xml \
+ADD conf/core-site.xml /usr/local/hadoop/etc/hadoop/core-site.xml \
     conf/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml \
    conf/mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml \
     conf/yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml \
