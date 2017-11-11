@@ -36,20 +36,20 @@ RUN ln -s /usr/local/hadoop-${HADOOP_VERSION} /usr/local/hadoop && \
 ENV HADOOP_HOME /usr/local/hadoop
 
 #ADD conf/core-site.xml /usr/local/hadoop/etc/hadoop/core-site.xml \
-#    conf/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml \
-#   conf/mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml \
-#    conf/yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml \
-#    conf/slave /usr/local/hadoop/etc/hadoop/slave \
-#    conf/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+    conf/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml \
+   conf/mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml \
+    conf/yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml \
+    conf/slave /usr/local/hadoop/etc/hadoop/slave \
+    conf/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
 # init hdfs
-#RUN /usr/local/hadoop/bin/hdfs namenode -format
+RUN /usr/local/hadoop/bin/hdfs namenode -format
 
 #ADD ssh_config /root/.ssh/config 
 #RUN chmod 600 /root/.ssh/config \
 #    chown root:root /root/.ssh/config
 
-#RUN service ssh start
+RUN service ssh start
 
 # Hdfs ports
 EXPOSE 9000 50010 50020 50070 50075 50090
